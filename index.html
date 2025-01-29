@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Web Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            transition: background-color 0.5s;
+        }
+        .animated-banner {
+            font-size: 24px;
+            padding: 20px;
+            background-color: #af534c;
+            color: white;
+            animation: fadeIn 2s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .hidden {
+            display: none;
+        }
+        .modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .close-btn {
+            cursor: pointer;
+            color: red;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header class="animated-banner">Welcome to My Interactive Page</header>
+    
+    <button id="toggle-btn">Toggle Background</button>
+    
+    <input type="number" id="length" placeholder="Enter length">
+    <input type="number" id="width" placeholder="Enter width">
+    <button id="calculate-area">Calculate Area</button>
+    <p id="area-result"></p>
+    
+    <button id="modal-btn">Open Modal</button>
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <p>This is a modal window!</p>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById("toggle-btn").addEventListener("click", function() {
+            document.body.style.backgroundColor = document.body.style.backgroundColor === 'lightblue' ? 'white' : 'lightblue';
+        });
+
+        document.getElementById("calculate-area").addEventListener("click", function() {
+            let length = document.getElementById("length").value;
+            let width = document.getElementById("width").value;
+            let area = length * width;
+            document.getElementById("area-result").textContent = "Area: " + area;
+        });
+
+        document.getElementById("modal-btn").addEventListener("click", function() {
+            document.getElementById("modal").classList.remove("hidden");
+        });
+
+        document.querySelector(".close-btn").addEventListener("click", function() {
+            document.getElementById("modal").classList.add("hidden");
+        });
+    </script>
+</body>
+</html>
